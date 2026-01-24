@@ -8,7 +8,13 @@ export const fastify = Fastify({
   logger: false,
 });
 
-fastify.register(cors);
+fastify.register(cors, {
+  origin: [
+    "https://lajesfen.net",
+    "https://www.lajesfen.net",
+    "https://website-lajesfen.vercel.app/",
+  ],
+});
 fastify.register(getPortfolioProjects, { prefix: "/portfolio" });
 
 fastify.get("/", async (request, reply) => {
