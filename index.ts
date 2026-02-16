@@ -1,7 +1,10 @@
 import cors from "@fastify/cors";
 import Fastify from "fastify";
 import { prisma, testConnection } from "./src/lib/prisma";
-import getPortfolioProjects from "./src/routes/portfolio";
+import {
+  getPortfolioProjectByPath,
+  getPortfolioProjects,
+} from "./src/routes/portfolio";
 
 const port = 3000;
 export const fastify = Fastify({
@@ -16,6 +19,7 @@ fastify.register(cors, {
   ],
 });
 fastify.register(getPortfolioProjects, { prefix: "/portfolio" });
+fastify.register(getPortfolioProjectByPath, { prefix: "/portfolio" });
 
 fastify.get("/", async (request, reply) => {
   return { message: "Beep boop" };

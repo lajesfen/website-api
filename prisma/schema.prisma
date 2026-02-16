@@ -14,10 +14,15 @@ datasource db {
 }
 
 model PortfolioProject {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String
-  imageUrl    String?
-  url         String?
-  date        DateTime @default(now())
+  id                Int      @id @default(autoincrement())
+  path              String   @unique
+  title             String
+  description       String
+  description_large String?
+  image_url         String
+  url_repo          String?
+  url_demo          String?
+  date              DateTime @default(now())
+
+  @@map("portfolio_projects")
 }
